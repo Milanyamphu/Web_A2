@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leap Year and 12 Horary Signs</title>
+    <style>
+        body {
+            background-color:lightyellow;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            color: rgb(54, 0, 0);
+        }
+
+        img {
+            max-width: 400px;
+        }
+
+        .year-text{
+            color:darkgreen;
+        }
+
+        .YearLine{
+            color: darkgreen;
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        .AnimalName{
+            color: darkgreen;
+            font-weight: bold;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leap Year and 12 Horary Signs</h1>
+    
+    <div id="result"></div>
+    
+    <script>
+        // Define the horary animals and their corresponding image file names
+        var horaryImages = {
+            0: {
+                animal: "Monkey",
+                image: "monkey.jpg"
+            },
+            1: {
+                animal: "Cock",
+                image: "cock.jpg"
+            },
+            2: {
+                animal: "Dog",
+                image: "dog.jpg"
+            },
+            3: {
+                animal: "Boar",
+                image: "boar.jpg"
+            },
+            4: {
+                animal: "Rat",
+                image: "rat.jpg"
+            },
+            5: {
+                animal: "Ox",
+                image: "ox.jpg"
+            },
+            6: {
+                animal: "Tiger",
+                image: "tiger.jpg"
+            },
+            7: {
+                animal: "Hare",
+                image: "hare.jpg"
+            },
+            8: {
+                animal: "Dragon",
+                image: "dragon.jpg"
+            },
+            9: {
+                animal: "Serpent",
+                image: "serpent.jpg"
+            },
+            10: {
+                animal: "Horse",
+                image: "horse.jpg"
+            },
+            11: {
+                animal: "Sheep",
+                image: "sheep.jpg"
+            }
+        };
+         // Get the result container element
+        var resultContainer = document.getElementById("result");
+        
+        while (true) {
+            var yearInput = prompt("Enter a year here:");
+            // Prompt the user to enter a year
+            if (yearInput === null) {
+                break;  // Exit the loop if the user cancels or clicks "Cancel"
+            }
+            
+            var year = parseInt(yearInput);
+            
+            if (isNaN(year)) {
+                alert("Invalid year. Please enter a valid year.");
+                continue;  // Go to the next iteration if the input is not a valid year
+            }
+             // Determine if the year is a leap year or common year
+            var isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            var horarySign = year % 12;
+
+            // Determine the horary sign based on the year
+            var yearLine = document.createElement("p");
+            yearLine.textContent = year;
+            yearLine.classList.add("year-text"); // Add this line to assign the CSS class
+            resultContainer.appendChild(yearLine);
+
+            // Display the year, leap/common year, and horary sign
+            var leapYearLine = document.createElement("p");
+            leapYearLine.textContent = (isLeapYear ? "Leap Year" : "Common Year");
+            leapYearLine.classList.add("YearLine"); // Add this line to assign the CSS class
+            resultContainer.appendChild(leapYearLine);
+            
+            var horarySignLine = document.createElement("p");
+            horarySignLine.textContent = horaryImages[horarySign].animal;
+            horarySignLine.classList.add("AnimalName"); // Add this line to assign the CSS class
+            resultContainer.appendChild(horarySignLine);
+            
+            // Display the corresponding animal image
+            var animalImage = document.createElement("img");
+            animalImage.setAttribute("src", horaryImages[horarySign].image);
+            resultContainer.appendChild(animalImage);
+            
+            break;  // Break the loop after the prompt input
+        }
+    </script>
+</body>
+</html>
